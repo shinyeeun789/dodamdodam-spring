@@ -24,9 +24,9 @@
 				</header>
 				<ul>
 				<% if(userID == null) { %>
-					<li><a href="/user/login"> 로그인 </a></li>
+					<li><a href="/user/login.do"> 로그인 </a></li>
 				<% } else { %>
-					<li><a href="/logout"> 로그아웃 </a></li>
+					<li><a href="/user/logout.do"> 로그아웃 </a></li>
 				<% } %>
 					<li>
 						<span class="opener"> 식단 관리 </span>

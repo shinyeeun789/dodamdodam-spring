@@ -25,23 +25,48 @@ public class UserController {
 	@Inject
 	private UserService service;
 	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public void loginGET(Model model) throws Exception {
+	@RequestMapping(value="/login.do", method=RequestMethod.GET)
+	public void loginGET(Model model, HttpSession session) throws Exception {
 		logger.info("LOGIN GET...........");
 	}
 	
-	@RequestMapping(value="/login", method=RequestMethod.POST, produces="text/html; charset=UTF-8")
-	public @ResponseBody String loginPOST(UserVO userVO, HttpSession httpSession, RedirectAttributes rttr) throws Exception {
+	@RequestMapping(value="/login.do", method=RequestMethod.POST, produces="text/html; charset=UTF-8")
+	public String loginPOST(UserVO userVO, HttpSession session, RedirectAttributes rttr) throws Exception {
 		int result = service.login(userVO);
 		if (result == 0) {
-			return "<script>"
-					+ "alert(\"로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.\");"
-					+ "location.href=\"/user/login\";"
-					+ "</script>";
+			rttr.addFlashAttribute("msg", 0);
+			
+			return "redirect:/user/login.do";
+//			return "<script>"
+//					+ "alert(\"로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요.\");"
+//					+ "location.href=\"/user/login.do\";"
+//					+ "</script>";
+		} else if (result == -1) {
+			rttr.addFlashAttribute("msg", -1);
+//			return "<script>"
+//					+ "alert(\"가입되지 않은 아이디입니다.\");"
+//					+ "location.href=\"/user/login.do\";"
+//					+ "</script>";
+			
+			return "redirect:/user/login.do";
 		}
 		else {
-			rttr.addFlashAttribute(userVO);
-			return "redirect:/";
+			try {
+				UserVO userInfo = service.getUserInfo(userVO);
+				session.setAttribute("loginCheck", true);
+				session.setAttribute("userID", userInfo.getUserID());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "redirect:/main.do";
 		}
+	}
+	
+	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
+	public String logout(Model model, HttpSession session) throws Exception {
+		
+		session.setAttribute("userID", null);			// 세션 무효화
+		
+		return "redirect:/main.do";
 	}
 }

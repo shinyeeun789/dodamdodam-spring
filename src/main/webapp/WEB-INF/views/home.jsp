@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 			<div class="inner">
 				<!-- Header -->
 				<header id="header">
-					<a href="/" class="logo"> 도담도담 </a>
+					<a href="/main.do" class="logo"> 도담도담 </a>
 					<ul class="icons">
 						<li><a href="https://github.com/shinyeeun789" class="icon brands fa-github"><span class="label"> GitHub </span></a></li>
 						<li><a href="#" class="icon brands fa-medium-m"><span class="label"> Mail </span></a></li>
@@ -45,7 +46,7 @@
 							</header>
 							<p> 난류, 우유, 메밀, 땅콩, 대두, 밀, 고등어, 게, 새우, 돼지고기, 복숭아, 토마토, 호두, 닭고기, 쇠고기, 오징어, 조개류(굴, 전복, 홍합 포함) </p>
 							<ul class="actions">
-								<li><a href="/user/login" class="button big"> LOGIN </a></li>
+								<li><a href="/user/login.do" class="button big"> LOGIN </a></li>
 							</ul>
 						</div>
 						<span class="image object">

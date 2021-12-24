@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +17,7 @@
 			<div class="inner">
 				<!-- Header -->
 				<header id="header">
-					<a href="/" class="logo"> 도담도담 </a>
+					<a href="/main.do" class="logo"> 도담도담 </a>
 					<ul class="icons">
 						<li><a href="https://github.com/shinyeeun789" class="icon brands fa-github"><span class="label"> GitHub </span></a></li>
 						<li><a href="#" class="icon brands fa-medium-m"><span class="label"> Mail </span></a></li>
@@ -33,6 +34,13 @@
 							<div class="col-12">
 								<input type="password" name="userPassword" id="userPassword" placeholder="비밀번호">
 							</div>
+							
+							<c:if test="${msg == 0}">
+								<p style="color:red;"> 로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요. </p>
+							</c:if>
+							<c:if test="${msg == -1}">
+								<p style="color:red;"> 회원가입되지 않은 아이디입니다. </p>
+							</c:if>
 							<!-- Break -->
 							<div class="col-12">
 								<input type="submit" value="LOGIN" class="primary" />

@@ -20,6 +20,19 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public boolean idCheck(UserVO userVO) throws Exception {
+		String userID = session.selectOne(namespace+".idCheck", userVO); 
+		
+		if (userID == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+
+
+	@Override
 	public String getAllergy(String userID) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
