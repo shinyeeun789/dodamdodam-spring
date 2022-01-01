@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.foodMapper">
+	<select id="searchFood" parameterType="String" resultType="FoodVO">
+		SELECT *
+		FROM FOOD
+		WHERE manufacturer LIKE CONCAT('%',#{food},'%') OR foodName LIKE CONCAT('%',#{food},'%')
+		ORDER BY manufacturer, foodName
+	</select>
+	
+	<select id="getFoodInfo" parameterType="Integer" resultType="FoodVO">
+		SELECT *
+		FROM FOOD
+		WHERE foodID = #{foodID}
+	</select>
+	
+	<select id="foodCategory" parameterType="String" resultType="FoodVO">
+		SELECT *
+		FROM FOOD
+		WHERE category = #{category}
+		ORDER BY manufacturer, foodName 
+	</select>
+</mapper>

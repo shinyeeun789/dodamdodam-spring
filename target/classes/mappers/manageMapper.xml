@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.manageMapper">
+	<insert id="insertFood" parameterType="FoodVO">
+		INSERT INTO FOOD(manufacturer,foodName,ingredient,crossContamination,category,risk,image)
+		VALUES(#{manufacturer},#{foodName},#{ingredient},#{crossContamination},#{category},#{risk},#{image})
+	</insert>
+	
+	<select id="getFoodInfo" parameterType="FoodVO" resultType="FoodVO">
+		SELECT *
+		FROM FOOD
+		WHERE foodName LIKE CONCAT('%',#{foodName},'%')
+	</select>
+	
+	<update id="updateRisk" parameterType="FoodVO">
+		update food
+		set risk = #{risk}
+		where foodID = #{foodID}
+	</update>
+</mapper>

@@ -12,15 +12,22 @@
 </head>
 <body class="is-preload">
 <script>
-	var result = '${msg}';
-	if (result == 'success')) {
-		
-	}
+	<c:if test="${msg == 2}">
+		alert('변경되었습니다 :)');
+	</c:if>
+	<c:if test="${msg == 1}">
+		alert('당신의 알러지 타입을 기억했어요 :)');
+	</c:if>
+	<c:if test="${msg == 0}">
+		alert('오류가 발생했습니다. 잠시후 다시 시도해주세요.');
+	</c:if>
 </script>
 <%
 	String userID = null;
+	String user_type = null;
 	if(session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
+		user_type = (String) session.getAttribute("user_type");
 	}
 %>
 	<div id="wrapper">
@@ -53,9 +60,23 @@
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
-					
-				<% } else { %>
-				
+				<% } else if (user_type.equals("회원")){ %>
+					<section id="banner">
+						<div class="content">
+							<header>
+								<h1> 오늘 하루는 어땠나요? </h1>
+							</header>
+							<p> 오늘 있었던 일을 기록해주세요! </p>
+							<ul class="actions">
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 식단 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 증상 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 약 복용 정보 추가 </a></li>
+							</ul>
+						</div>
+						<span class="image object">
+							<img src="resources/picture/allergy.png" alt=""/>
+						</span>
+					</section>
 				<% } %>
 				
 				<!-- 식품 검색 -->
@@ -66,7 +87,7 @@
 					
 					<!-- Search -->				
 					<section id="search" class="alt">
-						<form method="post" action="#">
+						<form method="get" action="/food/search.do">
 							<input type="text" name="keyword" id="keyword" placeholder="제품명 또는 제조사를 검색해보세요!" />
 						</form>
 					</section>
@@ -80,35 +101,35 @@
 					
 					<div class="posts">
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_피자.png" alt=""/></a>
+							<a href="/food/foodCategory.do?category=피자" class="image"><img src="resources/picture/카테고리_피자.png" alt=""/></a>
 							<h3> 피자 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_치킨.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=치킨" class="image"><img src="resources/picture/카테고리_치킨.png" alt="" width="40%" /></a>
 							<h3> 치킨 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_분식.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=분식" class="image"><img src="resources/picture/카테고리_분식.png" alt="" width="40%" /></a>
 							<h3> 분식 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_패스트푸드.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=패스트푸드" class="image"><img src="resources/picture/카테고리_패스트푸드.png" alt="" width="40%" /></a>
 							<h3> 패스트푸드 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_빵.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=빵" class="image"><img src="resources/picture/카테고리_빵.png" alt="" width="40%" /></a>
 							<h3> 빵 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_간식.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=간식" class="image"><img src="resources/picture/카테고리_간식.png" alt="" width="40%" /></a>
 							<h3> 간식 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_가공식품.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=가공식품" class="image"><img src="resources/picture/카테고리_가공식품.png" alt="" width="40%" /></a>
 							<h3> 가공식품 </h3>
 						</article>
 						<article>
-							<a href="#" class="image"><img src="resources/picture/카테고리_기타.png" alt="" width="40%" /></a>
+							<a href="/food/foodCategory.do?category=기타" class="image"><img src="resources/picture/카테고리_기타.png" alt="" width="40%" /></a>
 							<h3> 기타 </h3>
 						</article>
 					</div>

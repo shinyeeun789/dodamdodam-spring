@@ -7,27 +7,44 @@
 <title> 도담도담 </title>
 </head>
 <body class="is-preload">
-	<%
-		String userID = null;
-		if(session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
-		}
-	%>
+<%
+	String userID = null;
+	String userName = null;
+	String user_type = "";
+	if(session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+		userName = (String) session.getAttribute("userName");
+		user_type = (String) session.getAttribute("user_type");
+	}
+%>
 
 	<!-- Sidebar -->
 	<div id="sidebar">
 		<div class="inner">
+			
 			<!-- Menu -->
 			<nav id="menu">
-				<header class="major">
-					<h2>Menu</h2>
-				</header>
+				<% if (userID == null) { %>
+					<header class="major">
+						<h2>Menu</h2>
+					</header>
+				<% } else { %>
+					<header class="major">
+						<h2 style="font-family:'Gothic A1', sans-serif;"> <%= userName %> 님, </h2>
+					</header>
+				<% } %>
 				<ul>
 				<% if(userID == null) { %>
 					<li><a href="/user/login.do"> 로그인 </a></li>
-				<% } else { %>
+				<% } else if (user_type.equals("회원")) { %>
 					<li><a href="/user/logout.do"> 로그아웃 </a></li>
-				<% } %>
+					<li>
+						<span class="opener"> 마이페이지 </span>
+						<ul>
+							<li><a href="/user/setUserName.do"> 닉네임 변경 </a></li>
+							<li><a href="/user/setAllergyType.do"> 알러지 타입 변경 </a></li>
+						</ul>
+					</li>
 					<li>
 						<span class="opener"> 식단 관리 </span>
 						<ul>
@@ -45,6 +62,12 @@
 					</li>
 					<li><a href="#"> 원인 분석 </a></li>
 					<li><a href="#"> 증상 변화 </a></li>
+				<% } else { %>
+					<li><a href="/user/logout.do"> 로그아웃 </a></li>
+					<li><a href="/manage/newFood.do"> 새로운 식품 입력 </a></li>
+					<li><a href="/manage/updateRisk.do"> 식품 위험도 변경 </a></li>
+				<% } %>
+					<li><a href="/food/search.do"> 식품 검색 </a></li>
 				</ul>
 			</nav>
 
