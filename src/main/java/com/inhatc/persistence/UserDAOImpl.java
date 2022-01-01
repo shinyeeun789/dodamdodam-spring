@@ -15,6 +15,11 @@ public class UserDAOImpl implements UserDAO {
 	private static String namespace = "com.inhatc.mapper.userMapper";
 
 	@Override
+	public void join(UserVO userVO) throws Exception {
+		session.insert(namespace+".join", userVO);
+	}
+
+	@Override
 	public UserVO login(UserVO userVO) throws Exception {
 		return session.selectOne(namespace+".login", userVO);
 	}
@@ -30,11 +35,32 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
-
+	@Override
+	public boolean nameCheck(UserVO userVO) throws Exception {
+		String userName = session.selectOne(namespace+".nameCheck", userVO);
+		
+		if (userName == null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	@Override
 	public String getAllergy(String userID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.selectOne(namespace+".getAllergy", userID);
+	}
+
+	@Override
+	public int updateAllergy(UserVO userVO) throws Exception {
+
+		return session.update(namespace+".updateAllergy", userVO);
+	}
+
+	@Override
+	public int updateUserName(UserVO userVO) throws Exception {
+
+		return session.update(namespace+".updateUserName", userVO);
 	}
 }

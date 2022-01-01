@@ -5,12 +5,12 @@ public class UserVO {
 	private String userPassword;
 	private String userName;
 	private String allergyType;
-	
+	private String loginType;
+
 	@Override
 	public String toString() {
 		return "UserVO [userID=" + userID + ", userPassword=" + userPassword + ", userName=" + userName
-				+ ", allergyType=" + allergyType + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ ", allergyType=" + allergyType + ", loginType=" + loginType + "]";
 	}
 
 	public String getUserID() {
@@ -43,5 +43,13 @@ public class UserVO {
 
 	public void setAllergyType(String allergyType) {
 		this.allergyType = allergyType;
+	}
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
 	}
 }

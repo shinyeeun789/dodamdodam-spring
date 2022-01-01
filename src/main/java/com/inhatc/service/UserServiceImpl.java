@@ -13,28 +13,53 @@ public class UserServiceImpl implements UserService {
 	private UserDAO dao;
 
 	@Override
-	public int login(UserVO userVO) throws Exception {
-		UserVO userInfo = dao.login(userVO);
-		if (userInfo == null) {
-			if (dao.idCheck(userVO)) {
-				return 0;		// 비밀번호 오류
-			} else {
-				return -1;		// 미가입 회원
-			}
-		} else {
-			return 1;			// 성공
-		}
+	public void join(UserVO userVO, String login_type) throws Exception {	
+		userVO.setLoginType(login_type);
+		dao.join(userVO);
 	}
 
 	@Override
-	public UserVO getUserInfo(UserVO userVO) throws Exception {
-		
+	public UserVO login(UserVO userVO) throws Exception {
 		return dao.login(userVO);
 	}
 
 	@Override
-	public String getAllergy(String userID) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int idCheck(UserVO userVO) throws Exception {
+		if (dao.idCheck(userVO)) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int nameCheck(UserVO userVO) throws Exception {
+		if (dao.nameCheck(userVO)) {
+			return 1;
+		} else {
+			return 0;			
+		}
+	}
+
+	@Override
+	public String[] getAllergy(String userID) throws Exception {
+		String allergyType = dao.getAllergy(userID);
+		String[] allergies = null;
+		
+		if (allergyType != null) {
+			allergies = dao.getAllergy(userID).split(",");
+		}
+		
+		return allergies;
+	}
+
+	@Override
+	public int updateAllergy(UserVO userVO) throws Exception {
+		return dao.updateAllergy(userVO);
+	}
+
+	@Override
+	public int updateUserName(UserVO userVO) throws Exception {
+		return dao.updateUserName(userVO);
 	}
 }

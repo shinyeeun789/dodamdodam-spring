@@ -12,10 +12,15 @@
 </head>
 <body class="is-preload">
 <script>
-	var result = '${msg}';
-	if (result == 'success')) {
-		
-	}
+	<c:if test="${msg == 2}">
+		alert('변경되었습니다 :)');
+	</c:if>
+	<c:if test="${msg == 1}">
+		alert('당신의 알러지 타입을 기억했어요 :)');
+	</c:if>
+	<c:if test="${msg == 0}">
+		alert('오류가 발생했습니다. 잠시후 다시 시도해주세요.');
+	</c:if>
 </script>
 <%
 	String userID = null;
@@ -53,9 +58,23 @@
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
-					
 				<% } else { %>
-				
+					<section id="banner">
+						<div class="content">
+							<header>
+								<h1> 오늘 하루는 어땠나요? </h1>
+							</header>
+							<p> 오늘 있었던 일을 기록해주세요! </p>
+							<ul class="actions">
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 식단 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 증상 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 약 복용 정보 추가 </a></li>
+							</ul>
+						</div>
+						<span class="image object">
+							<img src="resources/picture/allergy.png" alt=""/>
+						</span>
+					</section>
 				<% } %>
 				
 				<!-- 식품 검색 -->
