@@ -5,8 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.inhatc.mapper.userMapper">
 	
 	<select id="login" parameterType="UserVO" resultType="UserVO">
+<<<<<<< HEAD
 		SELECT *
 		FROM user
+=======
+		SELECT * FROM user
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 		WHERE userID = #{userID}
 	</select>
 	
@@ -24,7 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="join" parameterType="UserVO">
 		INSERT INTO USER
+<<<<<<< HEAD
 		VALUES(#{userID},#{userPassword},#{userName},#{allergy_type},#{login_type},'회원');
+=======
+		VALUES(#{userID},#{userPassword},#{userName},#{allergyType},#{loginType});
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 	</insert>
 	
 	<select id="getAllergy" parameterType="UserVO" resultType="String">

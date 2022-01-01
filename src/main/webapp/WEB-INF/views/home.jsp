@@ -60,7 +60,11 @@
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
+<<<<<<< HEAD
 				<% } else if (user_type.equals("회원")){ %>
+=======
+				<% } else { %>
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 					<section id="banner">
 						<div class="content">
 							<header>

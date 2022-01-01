@@ -10,11 +10,17 @@
 <%
 	String userID = null;
 	String userName = null;
+<<<<<<< HEAD
 	String user_type = "";
 	if(session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 		userName = (String) session.getAttribute("userName");
 		user_type = (String) session.getAttribute("user_type");
+=======
+	if(session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
+		userName = (String) session.getAttribute("userName");
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 	}
 %>
 
@@ -45,6 +51,10 @@
 							<li><a href="/user/setAllergyType.do"> 알러지 타입 변경 </a></li>
 						</ul>
 					</li>
+<<<<<<< HEAD
+=======
+				<% } %>
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 					<li>
 						<span class="opener"> 식단 관리 </span>
 						<ul>
