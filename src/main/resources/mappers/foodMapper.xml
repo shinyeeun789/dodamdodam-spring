@@ -22,4 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE category = #{category}
 		ORDER BY manufacturer, foodName 
 	</select>
+	
+	<insert id="insertApiFoods" parameterType="FoodVO">
+		INSERT INTO FOOD(manufacturer, foodName, ingredient, category, risk, image)
+		VALUES(#{manufacturer}, #{foodName}, #{ingredient}, #{category}, #{risk}, #{image})
+	</insert>
 </mapper>

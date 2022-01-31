@@ -10,15 +10,12 @@
 <meta name = "viewport" content="width=device-width, initial-scale=1.0">		<!-- 모바일 반응형을 만들 때 필요 -->
 <title> 도담도담 </title>
 <link rel="stylesheet" href="../resources/css/main.css">
-<script>
-	<c:if test="${msg == 1}">
-		alert('식품의 위험도가 변경되었습니다.');
-	</c:if>
-	<c:if test="${msg == 0}">
-		alert('오류가 발생했습니다. 잠시후 다시 시도해주세요.');
-	</c:if>
-</script>
 <script type="text/javascript">
+	<c:if test="${empty userVO}">
+		alert('로그인 후 사용할 수 있습니다.');
+		location.href="/user/login.do";
+	</c:if>
+	
 	function setFoodList(datas) {
 		$("#foodList option").remove();
 		if (datas.length != 0) {
@@ -33,27 +30,46 @@
 			}
 		} 
 	}
+	
+	// 음식 불러오기 버튼 함수
+	function getFoodInfo() {
+		var foodName = $("#foodName").val();
+		$.ajax({
+			url : "/manage/getFoodInfo.do",
+			type: "post",
+			data: {"foodName" : foodName},
+			success: function(datas) {
+				console.log('success');
+				setFoodList(datas);
+			},
+			error  : function(request, status, error) {
+				alert("데이터를 불러오지 못했습니다");
+			}
+		});
+	}
 
 	$(document).ready(function() {
-		$("#getFoodInfo").click(function() {
-			var foodName = $("#foodName").val();
-			$.ajax({
-				url : "/manage/getFoodInfo.do",
-				type: "post",
-				data: {"foodName" : foodName},
-				success: function(datas) {
-					console.log('success');
-					setFoodList(datas);
-				},
-				error  : function(request, status, error) {
-					alert("데이터를 불러오지 못했습니다");
-				}
-			});
+		document.addEventListener('keydown', function(e) {
+			if(e.keyCode == 13) {			// 엔터키 누르면
+				e.preventDefault();
+				getFoodInfo();				// 음식 불러올 수 있도록
+			}
 		});
+		
+		$("#getFoodInfo").click(getFoodInfo);
 	});
 </script>
 </head>
 <body class="is-preload">
+	<script>
+		<c:if test="${msg == 1}">
+			alert('식품의 위험도가 변경되었습니다.');
+		</c:if>
+		<c:if test="${msg == 0}">
+			alert('오류가 발생했습니다. 잠시후 다시 시도해주세요.');
+		</c:if>
+	</script>
+	
 	<script type="text/javascript">
 		// 폼 유효성 검사
 		function riskForm_check() {	

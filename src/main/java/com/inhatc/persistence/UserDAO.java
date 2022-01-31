@@ -9,6 +9,9 @@ public interface UserDAO {
 	// 로그인 시도
 	public UserVO login(UserVO userVO) throws Exception;
 	
+	// 사용자 정보 가져오기
+	public UserVO getUserInfo(UserVO userVO) throws Exception;
+	
 	// ID 확인 (회원가입 여부 확인)
 	public boolean idCheck(UserVO userVO) throws Exception;
 	

@@ -43,7 +43,7 @@
 					</ul>
 				</header>
 				
-				<% if (userID == null) { %>
+				<c:if test="${empty userVO}">
 					<!-- Banner -->
 					<section id="banner">
 						<div class="content">
@@ -60,7 +60,8 @@
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
-				<% } else if (user_type.equals("회원")){ %>
+				</c:if>
+				<c:if test="${userVO.user_type eq '회원'}">
 					<section id="banner">
 						<div class="content">
 							<header>
@@ -68,16 +69,16 @@
 							</header>
 							<p> 오늘 있었던 일을 기록해주세요! </p>
 							<ul class="actions">
-								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 식단 추가 </a></li>
-								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 증상 추가 </a></li>
-								<li><a style="font-family:'Roboto Slab'" href="/main.do" class="button big"> 약 복용 정보 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/diet/dietPlus.do" class="button big"> 식단 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/outbreak/outbreakPlus.do" class="button big"> 증상 추가 </a></li>
+								<li><a style="font-family:'Roboto Slab'" href="/outbreak/medicinePlus.do" class="button big"> 약 복용 정보 추가 </a></li>
 							</ul>
 						</div>
 						<span class="image object">
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
-				<% } %>
+				</c:if>
 				
 				<!-- 식품 검색 -->
 				<section>
@@ -88,7 +89,7 @@
 					<!-- Search -->				
 					<section id="search" class="alt">
 						<form method="get" action="/food/search.do">
-							<input type="text" name="keyword" id="keyword" placeholder="제품명 또는 제조사를 검색해보세요!" />
+							<input type="text" name="keyword" id="keyword" placeholder="제품명 또는 제조사를 검색해보세요!" autocomplete="off"/>
 						</form>
 					</section>
 				</section>

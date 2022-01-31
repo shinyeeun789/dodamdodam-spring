@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public UserVO getUserInfo(UserVO userVO) throws Exception {
+		return dao.getUserInfo(userVO);
+	}
+
+	@Override
 	public int idCheck(UserVO userVO) throws Exception {
 		if (dao.idCheck(userVO)) {
 			return 1;

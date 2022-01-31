@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.dietMapper">
+	
+	<insert id="insertDiet" parameterType="DietVO">
+		INSERT INTO diet(userID, dietDate, dietTime, brelupper, foodID, foodName)
+		VALUES(#{userID}, #{dietDate}, #{dietTime}, #{brelupper}, #{foodID}, #{foodName})
+	</insert>
+	
+	<select id="getFoodID" parameterType="FoodVO" resultType="String">
+		SELECT foodID
+		FROM food
+		WHERE manufacturer = #{manufacturer} AND foodName = #{foodName}
+	</select>
+	
+	<select id="getFoodIDWithFoodName" parameterType="String" resultType="String">
+		SELECT foodID
+		FROM food
+		WHERE foodName = #{foodName}
+	</select>
+	
+	<select id="getDietListWithMonth" parameterType="Map" resultType="DietVO">
+		SELECT brelupper, dietDate, dietTime, foodID, foodName
+		FROM diet
+		WHERE userID = #{userID} AND dietDate BETWEEN #{startDate} AND LAST_DAY(#{startDate})
+		ORDER BY dietDate, dietTime
+	</select>
+	
+</mapper>

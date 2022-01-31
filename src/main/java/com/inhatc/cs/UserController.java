@@ -33,9 +33,8 @@ public class UserController {
 	public int kakaoLogin(UserVO vo, HttpSession session) throws Exception {
 		if (service.idCheck(vo) == 1) {		// 회원가입된 아이디
 			try {
-				session.setAttribute("userID", vo.getUserID());
-				session.setAttribute("userName", vo.getUserName());
-				session.setAttribute("user_type", "회원");
+				UserVO userVO = service.getUserInfo(vo);
+				session.setAttribute("userVO", userVO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -43,9 +42,8 @@ public class UserController {
 		} else {							// 회원가입되지 않은 아이디
 			service.join(vo,"카카오");
 			try {
-				session.setAttribute("userID", vo.getUserID());
-				session.setAttribute("userName", vo.getUserName());
-				session.setAttribute("user_type", "회원");
+				UserVO userVO = service.getUserInfo(vo);
+				session.setAttribute("userVO", userVO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -66,11 +64,12 @@ public class UserController {
 	
 	// 카카오 소셜 로그인 후 알러지 타입 선택 페이지 POST
 	@RequestMapping(value="/setAllergyType.do", method=RequestMethod.POST)
-	public String setAllergyTypePOST(UserVO vo, RedirectAttributes rttr) throws Exception {
+	public String setAllergyTypePOST(UserVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
 		logger.info("setAllergyType POST........");
 		
 		if (service.updateAllergy(vo) == 1) {
 			rttr.addFlashAttribute("msg", 1);
+			session.setAttribute("userVO", vo);
 		} else {
 			rttr.addFlashAttribute("msg", -1);
 		}
@@ -97,9 +96,7 @@ public class UserController {
 		
 		if (userVO != null && pwdMatch == true) {
 			try {
-				session.setAttribute("userID", userVO.getUserID());
-				session.setAttribute("userName", userVO.getUserName());
-				session.setAttribute("user_type", userVO.getUser_type());
+				session.setAttribute("userVO", userVO);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -114,8 +111,7 @@ public class UserController {
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(Model model, HttpSession session) throws Exception {
 		
-		session.setAttribute("userID", null);			// 세션 무효화
-		session.setAttribute("userName", null);
+		session.setAttribute("userVO", null); 				// 세션 무효화
 		return "redirect:/main.do";
 	}
 	
@@ -156,20 +152,20 @@ public class UserController {
 		return result;
 	}
 	
-	// 카카오 소셜 로그인 후 알러지 타입 선택 페이지 GET
+	// 닉네임 변경 GET
 	@RequestMapping(value="/setUserName.do", method=RequestMethod.GET)
 	public void setUserNameGET(Model model, HttpSession session) throws Exception {
-		logger.info("setAllergyType GET.............");
+		logger.info("setUserName GET.............");
 	}
 	
-	// 카카오 소셜 로그인 후 알러지 타입 선택 페이지 POST
+	// 닉네임 변경 POST
 	@RequestMapping(value="/setUserName.do", method=RequestMethod.POST)
 	public String setUserNamePOST(UserVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
-		logger.info("setAllergyType POST........");
+		logger.info("setUserName POST........");
 		
 		if (service.updateUserName(vo) == 1) {
 			rttr.addFlashAttribute("msg", 2);
-			session.setAttribute("userName", vo.getUserName());
+			session.setAttribute("userVO", vo);
 		} else {
 			rttr.addFlashAttribute("msg", -1);
 		}

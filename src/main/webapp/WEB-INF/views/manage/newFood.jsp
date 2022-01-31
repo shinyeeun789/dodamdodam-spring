@@ -17,6 +17,10 @@
 	<c:if test="${msg == 0}">
 		alert('오류가 발생했습니다. 잠시후 다시 시도해주세요.');
 	</c:if>
+	<c:if test="${empty userVO}">
+		alert('로그인 후 사용할 수 있습니다.');
+		location.href="/user/login.do";
+	</c:if>
 </script>
 </head>
 <body class="is-preload">
@@ -82,7 +86,7 @@
 								<h5 style="font-family: 'Gothic A1', sans-serif;"> 성분 정보 </h5>
 							</div>
 							<% String[] types = {"난류","우유","메밀","땅콩","대두","밀","고등어","게","새우",
-										"돼지고기","복숭아","토마토","아황산염","호두","닭고기","쇠고기","오징어","조개류(굴, 전복, 홍합 포함)"};
+										"돼지고기","복숭아","토마토","아황산염","호두","닭고기","쇠고기","오징어","조개류"};
 								
 								for (int i=0; i<types.length; i++) { %>
 									<div class="col-4 col-12-small">

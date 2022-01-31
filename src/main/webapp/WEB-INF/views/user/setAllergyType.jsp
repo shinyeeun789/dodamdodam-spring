@@ -1,3 +1,4 @@
+<%@page import="com.inhatc.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,9 +12,15 @@
 <title> 도담도담 </title>
 <link rel="stylesheet" href="../resources/css/main.css">
 <script type="text/javascript">
+	<c:if test="${empty userVO}">
+		alert('로그인 후 사용할 수 있습니다.');
+		location.href="/user/login.do";
+	</c:if>
+
 	$(document).ready(function() {
-	<%	String[] allergyTypes = (String[])request.getAttribute("allergyTypes");
-		if (allergyTypes != null) { 	
+	<%	UserVO vo = (UserVO) session.getAttribute("userVO");
+		if (vo != null && vo.getAllergy_type() != null) { 	
+			String[] allergyTypes = vo.getAllergy_type().split(",");
 			for (int i=0; i<allergyTypes.length; i++) { %>
 				$("input:checkbox[id='<%=allergyTypes[i]%>']").prop("checked", true);	
 		<%	}
@@ -44,21 +51,17 @@
 								<h5 style="font-family: 'Gothic A1', sans-serif;"> 가지고 있는 알러지 타입을 알고 있나요? </h5>
 							</div>
 							<%  String[] types = {"난류","우유","메밀","땅콩","대두","밀","고등어","게","새우",
-										"돼지고기","복숭아","토마토","아황산염","호두","닭고기","쇠고기","오징어","조개류(굴, 전복, 홍합 포함)"};
+										"돼지고기","복숭아","토마토","아황산염","호두","닭고기","쇠고기","오징어","조개류"};
 								
 								for (int i=0; i<types.length; i++) { %>
 									<div class="col-4 col-12-small">
-										<input type="checkbox" id="<%=types[i]%>" value="<%=types[i]%>" name="allergyType">
+										<input type="checkbox" id="<%=types[i]%>" value="<%=types[i]%>" name="allergy_type">
 										<label for="<%=types[i]%>"> <%=types[i]%> </label>
 									</div>
-							<%	}
-								
-								String userID = null;
-								if(session.getAttribute("userID") != null) {
-									userID = (String) session.getAttribute("userID");
-								}
-								%>
-							<input type="hidden" id="userID" name="userID" value="<%=userID%>"/>
+							<%	} %>
+							<input type="hidden" id="userID" name="userID" value="${userVO.userID}"/>
+							<input type="hidden" id="userName" name="userName" value="${userVO.userName}"/>
+							<input type="hidden" id="user_type" name="user_type" value="${userVO.user_type}"/>
 							<!-- Break -->
 							<div class="col-12">
 								<input type="submit" value="Confirm" class="primary fit">

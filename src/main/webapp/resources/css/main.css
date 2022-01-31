@@ -1034,6 +1034,9 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="month"],
 select,
 textarea {
   -moz-appearance: none;
@@ -1056,6 +1059,9 @@ textarea {
   input[type="tel"]:invalid,
   input[type="search"]:invalid,
   input[type="url"]:invalid,
+  input[type="date"]:invalid,
+  input[type="time"]:invalid,
+  input[type="month"]:invalid,
   select:invalid,
   textarea:invalid {
     box-shadow: none; }
@@ -1065,6 +1071,9 @@ textarea {
   input[type="tel"]:focus,
   input[type="search"]:focus,
   input[type="url"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus,
+  input[type="month"]:focus,
   select:focus,
   textarea:focus {
     border-color: #f56a6a;
@@ -1092,6 +1101,9 @@ input[type="email"],
 input[type="tel"],
 input[type="search"],
 input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="month"],
 select {
   height: 2.75em; }
 

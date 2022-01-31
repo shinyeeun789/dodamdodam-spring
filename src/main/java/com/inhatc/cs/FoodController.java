@@ -18,7 +18,7 @@ import com.inhatc.service.FoodService;
 @Controller
 @RequestMapping("/food/*")
 public class FoodController {
-	private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FoodController.class);
 	
 	@Inject
 	private FoodService service;

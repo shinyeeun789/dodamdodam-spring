@@ -25,6 +25,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public UserVO getUserInfo(UserVO userVO) throws Exception {
+		return session.selectOne(namespace+".getUserInfo", userVO);
+	}
+
+	@Override
 	public boolean idCheck(UserVO userVO) throws Exception {
 		String userID = session.selectOne(namespace+".idCheck", userVO); 
 		

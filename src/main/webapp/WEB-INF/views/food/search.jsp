@@ -32,7 +32,7 @@
 					<!-- Search -->				
 					<section id="search" class="alt">
 						<form method="get" action="/food/search.do">
-							<input type="text" name="keyword" id="keyword" placeholder="제품명 또는 제조사를 검색해보세요!" />
+							<input type="text" name="keyword" id="keyword" placeholder="제품명 또는 제조사를 검색해보세요!" autocomplete="off"/>
 						</form>
 					</section>
 					<div class="posts">

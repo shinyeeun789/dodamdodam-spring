@@ -13,6 +13,11 @@
 </head>
 <body class="is-preload">
 	<script type="text/javascript">
+		<c:if test="${empty userVO}">
+			alert('로그인 후 사용할 수 있습니다.');
+			location.href="/user/login.do";
+		</c:if>
+	
 		// 회원가입 폼 유효성 검사
 		function nameForm_check() {
 			
@@ -66,12 +71,10 @@
 							<div class="col-12">
 								<input type="text" name="userName" id="userName" placeholder="변경할 닉네임을 입력해주세요" autocomplete="off">
 							</div>
-							
-							<%	String userID = null;
-								if(session.getAttribute("userID") != null) 
-									userID = (String) session.getAttribute("userID"); %>
 									
-							<input type="hidden" id="userID" name="userID" value="<%=userID%>"/>
+							<input type="hidden" id="userID" name="userID" value="${userVO.userID}"/>
+							<input type="hidden" id="user_type" name="user_type" value="${userVO.user_type}"/>
+							<input type="hidden" id="allergy_type" name="allergy_type" value="${userVO.allergy_type}"/>
 							<!-- Break -->
 							<div class="col-12">
 								<button type="button" class="primary fit" onclick="nameForm_check()"> Confirm </button>

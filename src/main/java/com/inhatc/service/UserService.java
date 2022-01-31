@@ -8,6 +8,8 @@ public interface UserService {
 	
 	public UserVO login(UserVO userVO) throws Exception;
 	
+	public UserVO getUserInfo(UserVO userVO) throws Exception;
+	
 	public int idCheck(UserVO userVO) throws Exception;
 	
 	public int nameCheck(UserVO userVO) throws Exception;

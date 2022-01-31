@@ -61,4 +61,5 @@ public class UserVO {
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
 	}
+	
 }
