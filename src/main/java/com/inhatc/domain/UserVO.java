@@ -4,14 +4,23 @@ public class UserVO {
 	private String userID;
 	private String userPassword;
 	private String userName;
+<<<<<<< HEAD
 	private String allergy_type;
 	private String login_type;
 	private String user_type;
+=======
+	private String allergyType;
+	private String loginType;
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 
 	@Override
 	public String toString() {
 		return "UserVO [userID=" + userID + ", userPassword=" + userPassword + ", userName=" + userName
+<<<<<<< HEAD
 				+ ", allergy_type=" + allergy_type + ", login_type=" + login_type + ", user_type=" + user_type + "]";
+=======
+				+ ", allergyType=" + allergyType + ", loginType=" + loginType + "]";
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 	}
 
 	public String getUserID() {
@@ -61,5 +70,16 @@ public class UserVO {
 	public void setUser_type(String user_type) {
 		this.user_type = user_type;
 	}
+<<<<<<< HEAD
 	
+=======
+
+	public String getLoginType() {
+		return loginType;
+	}
+
+	public void setLoginType(String loginType) {
+		this.loginType = loginType;
+	}
+>>>>>>> fcea751a4ecbca473c2e7ab6ee808b7c4c6a46fa
 }
