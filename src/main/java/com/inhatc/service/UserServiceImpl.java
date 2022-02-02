@@ -14,7 +14,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void join(UserVO userVO, String login_type) throws Exception {	
+<<<<<<< HEAD
 		userVO.setLogin_type(login_type);
+=======
+		userVO.setLoginType(login_type);
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 		dao.join(userVO);
 	}
 

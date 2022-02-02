@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -27,14 +28,27 @@ public class UserController {
 	@Inject
 	private BCryptPasswordEncoder pwdEncoder;
 	
+<<<<<<< HEAD
 	// 카카오 로그인 POST (무조건 회원)
+=======
+	// 카카오 로그인 POST
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 	@ResponseBody
 	@RequestMapping(value="/kakaoLogin.do", method=RequestMethod.POST)
 	public int kakaoLogin(UserVO vo, HttpSession session) throws Exception {
 		if (service.idCheck(vo) == 1) {		// 회원가입된 아이디
 			try {
+<<<<<<< HEAD
 				UserVO userVO = service.getUserInfo(vo);
 				session.setAttribute("userVO", userVO);
+=======
+				session.setAttribute("userID", vo.getUserID());
+				session.setAttribute("userName", vo.getUserName());
+<<<<<<< HEAD
+				session.setAttribute("user_type", "회원");
+=======
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
+>>>>>>> fcea751a4ecbca473c2e7ab6ee808b7c4c6a46fa
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -42,8 +56,17 @@ public class UserController {
 		} else {							// 회원가입되지 않은 아이디
 			service.join(vo,"카카오");
 			try {
+<<<<<<< HEAD
 				UserVO userVO = service.getUserInfo(vo);
 				session.setAttribute("userVO", userVO);
+=======
+				session.setAttribute("userID", vo.getUserID());
+				session.setAttribute("userName", vo.getUserName());
+<<<<<<< HEAD
+				session.setAttribute("user_type", "회원");
+=======
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
+>>>>>>> fcea751a4ecbca473c2e7ab6ee808b7c4c6a46fa
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -96,7 +119,16 @@ public class UserController {
 		
 		if (userVO != null && pwdMatch == true) {
 			try {
+<<<<<<< HEAD
 				session.setAttribute("userVO", userVO);
+=======
+				session.setAttribute("userID", userVO.getUserID());
+				session.setAttribute("userName", userVO.getUserName());
+<<<<<<< HEAD
+				session.setAttribute("user_type", userVO.getUser_type());
+=======
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
+>>>>>>> fcea751a4ecbca473c2e7ab6ee808b7c4c6a46fa
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
