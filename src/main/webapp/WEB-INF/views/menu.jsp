@@ -63,7 +63,14 @@
 								<li><a href="/outbreak/medicinePlus.do"> 약 복용 정보 추가 </a></li>
 							</ul>
 						</li>
-						<li><a href="#"> 원인 분석 </a></li>
+						
+						<c:if test="${not empty userVO.allergy_type}">
+							<li><a href="/allergen/eatableFood.do"> 섭취 제한 식품 </a>
+						</c:if>
+						<c:if test="${empty userVO.allergy_type}">
+							<li><a href="#"> 원인 분석 </a></li>
+						</c:if>
+						
 						<li><a href="/outbreak/outbreakReport.do"> 증상 변화 </a></li>				
 					</c:if>
 					<c:if test="${userVO.user_type eq '관리자'}">

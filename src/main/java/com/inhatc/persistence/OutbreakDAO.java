@@ -17,5 +17,11 @@ public interface OutbreakDAO {
 	public int insertMedicine(MedicineVO vo) throws Exception;
 	
 	public List<OutbreakReportVO> getOutbreakReports(String userID) throws Exception;
+	
+	public OutbreakReportVO getMaxType(String userID) throws Exception;
+	
+	public int getOutbreaksCount(String userID) throws Exception;
+	
+	public OutbreakReportVO getMedicineCount(String userID) throws Exception;
 
 }

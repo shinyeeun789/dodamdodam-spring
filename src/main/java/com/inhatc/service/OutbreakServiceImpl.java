@@ -44,5 +44,16 @@ public class OutbreakServiceImpl implements OutbreakService {
 		
 		return dao.getOutbreakReports(userID);
 	}
+
+	@Override
+	public OutbreakReportVO getMaxType(String userID) throws Exception {
+		OutbreakReportVO oReportVO = dao.getMaxType(userID);
+		OutbreakReportVO medicineVO = dao.getMedicineCount(userID);
+		
+		oReportVO.setMaxCount(dao.getOutbreaksCount(userID));
+		oReportVO.setMedicine(medicineVO.getMedicine());
+		oReportVO.setMedicineCount(medicineVO.getMedicineCount());
+		return oReportVO;
+	}
 	
 }

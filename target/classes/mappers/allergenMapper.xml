@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.inhatc.mapper.allergenMapper">
+	
+	<select id="getAllergen" parameterType="String" resultType="String">
+		SELECT allergy_type
+		FROM user
+		WHERE userID=#{userID} 
+	</select>
+	
+	<select id="eatableFood" resultType="FoodVO">
+		<![CDATA[
+			SELECT manufacturer, foodName
+			FROM food
+			WHERE manufacturer <> '알수없음'
+		]]>
+			<foreach collection="list" item="item" separator=" ">
+				AND NOT ingredient LIKE CONCAT('%',#{item},'%')
+			</foreach>
+			ORDER BY RAND() LIMIT 10
+	</select>
+	
+</mapper>

@@ -50,18 +50,14 @@
 										int cnt = 0;
 										for (int j=0; j<userAllergy.length; j++) {
 											if (foodAllergy[i].equals(userAllergy[j])) { %>
-												<strong style="color:red"><%=foodAllergy[i]%></strong>,
+												<strong style="color:red"><%=foodAllergy[i]%></strong>
 										<%  } else { 
 												cnt++;
 											}
 										}
-										if (cnt == userAllergy.length) { 
-											if (i == (foodAllergy.length-1)) { %>
-												<%=foodAllergy[i]%>
-										<%	} else {  %>
-												<%=foodAllergy[i]%>,
-										<%	}
-										}
+										if (cnt == userAllergy.length) {	%> 
+											<%=foodAllergy[i]%>
+									<%	}
 									} %>
 								</h4>
 							</c:if>

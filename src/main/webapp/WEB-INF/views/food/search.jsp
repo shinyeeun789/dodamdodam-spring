@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,12 @@
 						<c:forEach items="${foodList}" var="foodVO">
 							<c:if test="${foodVO.manufacturer ne '없음'}">
 								<article>
-									<a href="/food/foodDetail.do?foodID=${foodVO.foodID}" class="image"><img src="../../resources/picture/${foodVO.image}" alt="" /></a>
+									<c:if test="${fn:contains(foodVO.image, 'http')}">
+										<a href="/food/foodDetail.do?foodID=${foodVO.foodID}" class="image"><img src="${foodVO.image}" alt="" /></a>
+									</c:if>
+									<c:if test="${!fn:contains(foodVO.image, 'http')}">
+										<a href="/food/foodDetail.do?foodID=${foodVO.foodID}" class="image"><img src="../../resources/picture/${foodVO.image}" alt="" /></a>
+									</c:if>
 									<h3> [ ${foodVO.manufacturer} ] ${foodVO.foodName} </h3>
 									<p> ${foodVO.ingredient} </p>
 									<ul class="actions">

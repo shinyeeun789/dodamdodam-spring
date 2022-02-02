@@ -47,7 +47,7 @@
 				$("#searchFoodList option").remove();
 				if (datas.length != 0) {			// 음식 DB에 있는 음식일 경우
 					for (idx in datas) {
-						if (datas[idx].manufacturer != "없음") {
+						if (datas[idx].manufacturer != "알수없음") {
 							var str = "<option> ["+datas[idx].manufacturer+ "] " + datas[idx].foodName +"</option>";
 							$("#searchFoodList").append(str);
 						} else {

@@ -1,6 +1,7 @@
 package com.inhatc.cs;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -83,5 +84,10 @@ public class OutbreakController {
 	@RequestMapping(value="/outbreakReport.do", method=RequestMethod.POST)
 	public @ResponseBody List<OutbreakReportVO> outbreakReportPOST(String userID) throws Exception {
 		return service.getOutbreakReports(userID);
+	}
+	
+	@RequestMapping(value="/getMaxType.do", method=RequestMethod.POST)
+	public @ResponseBody OutbreakReportVO getMaxTypePOST(String userID) throws Exception {
+		return service.getMaxType(userID);
 	}
 }

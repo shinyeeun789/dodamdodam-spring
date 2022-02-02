@@ -39,5 +39,20 @@ public class OutbreakDAOImpl implements OutbreakDAO {
 	public List<OutbreakReportVO> getOutbreakReports(String userID) throws Exception {
 		return session.selectList(namespace+".getOutbreakReports", userID);
 	}
+
+	@Override
+	public OutbreakReportVO getMaxType(String userID) throws Exception {
+		return session.selectOne(namespace+".getMaxType", userID);
+	}
+
+	@Override
+	public int getOutbreaksCount(String userID) throws Exception {
+		return session.selectOne(namespace+".outbreaksCount", userID);
+	}
+
+	@Override
+	public OutbreakReportVO getMedicineCount(String userID) throws Exception {
+		return session.selectOne(namespace+".medicineCount", userID);
+	}
 	
 }

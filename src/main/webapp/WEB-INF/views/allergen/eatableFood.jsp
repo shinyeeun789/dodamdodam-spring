@@ -24,59 +24,36 @@
 </script>
 <body class="is-preload">
 	<script type="text/javascript">
-		
 		$(document).ready(function() {
-			var monthList = [];
-			var dataList = [];
-			
 			$.ajax({
-				url  : "/outbreak/outbreakReport.do",
-				type : "POST",
-				dataType : "JSON",
-				data	: {"userID":"${userVO.userID}"},
-				success : function(data) {
-					for (var i=0; i<data.length; i++) {
-						monthList.push(data[i].outbreakMonth);
-						dataList.push(data[i].outbreakCount);
-					}
-					
-					new Chart(document.getElementById("outbreakChart"), {
-						type: 'line',
-						data: {
-							labels: monthList,
-							datasets: [{
-								data			: dataList,
-								label			: "월별 증상 발생 횟수",
-								backgroundColor : "rgba(255,99,132,0.2)",
-								borderColor		: "rgba(255,99,132,1)",
-								borderWidth		: 1
-							}]
-						},
-						options: {
-							responsive: false,
-							scales : {
-								yAxes: [{ticks: {beginAtZero : true, stepSize : 1} }],
-								xAxes: [{stacked : true}],
-							}
-						}
-					});
-				},
-				error: function() {
-					alert('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
-				}
-			})  			// End of Ajax
-			
-			$.ajax({
-				url 	 : "/outbreak/getMaxType.do",
+				url 	 : "/allergen/getAllergen.do",
 				type	 : "POST",
 				dataType : "JSON",
 				data	 : {"userID":"${userVO.userID}"},
+				success  : function(result) {					
+					$.each(result, function(index, value) {
+						$("#allergenInfo").append($("<article>" + 
+								"<span class='icon' style='text-align:center;'>" +
+									"<img src='../../resources/picture/유발식재료_" + value + ".png' alt='' style='width:50%; height:50%; vertical-align:middle'></span>" +
+								"<div class='content'>" +
+									"<h3 style='font-family:Gothic A1,serif'>" + value + "</h3>" +  
+								"</div> </article>"))
+					})
+				}, error : function() {
+					alert('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
+				}
+			})
+			
+			$.ajax({
+				url 	 : "/allergen/eatableFood.do",
+				type	 : "POST",
+				dataType : "JSON",
+				data	 : {"allergy_type":"${userVO.allergy_type}"},
 				success  : function(result) {
-					
-					$('#maxPartInfo').text("지난 6개월 간 증상이 [ " + result.type + " ] 형태로 많이 발생했어요.");
-					$('#detailInfo').text(result.maxCount + "번 중 " + result.typeCount + "번이 [ " + result.type + " ] 형태입니다.");
-					$('#medicineInfo').text("[ " + result.medicine + " ] 을 " + result.medicineCount + "번 섭취했어요.")
-					
+					console.log(result);
+					$.each(result, function(index, value) {
+						$("#eatableFoodInfo").append($("<p style='font-family: Gothic A1,serif'>[" + value.manufacturer + "] " + value.foodName + "</p>"))
+					})
 				}, error : function() {
 					alert('데이터를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.');
 				}
@@ -97,29 +74,20 @@
 					</ul>
 				</header>
 				<section>
-					<header>
-						<h3> OUTBREAK REPORT </h3>
+					<header class="major">
+						<h3 style="font-family:'Gothic A1',serif"> 내가 가진 알레르겐 </h3>
 					</header>
-					<div class="row gtr-uniform">
-						<div class="col-12">
-							<div class="chartjs">
-								<div class="linechart"><canvas id="outbreakChart" style="height:50vh; width:60vw; margin:auto; display:block"></canvas></div>
-							</div>
-						</div>
-					</div>
+					<div class="features" id="allergenInfo"></div>
 				</section>
 				
 				<hr class="major" />
 				
-				<div class="col-12">
-					<h3 id="maxPartInfo" style="font-family: 'Gothic A1',serif; text-align: center"></h3>
-					<p id="detailInfo" style="font-family: 'Gothic A1',serif; text-align: center"></p>
-				</div>
-				
-				<div class="col-12">
-					<h3 style="font-family: 'Gothic A1',serif; text-align: center"> 지난 6개월 동안 나의 약 복용 정보 </h3>
-					<p id="medicineInfo" style="font-family: 'Gothic A1',serif; text-align: center"></p>
-				</div>
+				<section>
+					<header class="major">
+						<h3 style="font-family:'Gothic A1',serif"> 이 음식들은 안전해요! </h3>
+					</header>
+					<div class="col-12" id="eatableFoodInfo"></div>
+				</section>
 			</div>
 		</div>	
 		<!-- Menu -->

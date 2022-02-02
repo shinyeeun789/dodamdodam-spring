@@ -1,6 +1,7 @@
 package com.inhatc.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.inhatc.domain.MedicineVO;
 import com.inhatc.domain.OutbreakReportVO;
@@ -16,5 +17,7 @@ public interface OutbreakService {
 	public int insertMedicine(MedicineVO vo) throws Exception;
 	
 	public List<OutbreakReportVO> getOutbreakReports(String userID) throws Exception;
+	
+	public OutbreakReportVO getMaxType(String userID) throws Exception;
 	
 }

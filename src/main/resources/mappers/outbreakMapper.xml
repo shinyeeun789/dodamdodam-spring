@@ -31,4 +31,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		GROUP BY outbreakMonth
 		ORDER BY outbreakMonth
 	</select>
+	
+	<select id="getMaxType" parameterType="String" resultType="OutbreakReportVO">
+		SELECT type, COUNT(*) AS typeCount
+		FROM outbreak
+		WHERE userID=#{userID} AND outbreakDate BETWEEN DATE_ADD(now(), INTERVAL-6 MONTH) AND NOW()
+		GROUP BY type
+		ORDER BY typeCount DESC
+		LIMIT 1
+	</select>
+	
+	<select id="outbreaksCount" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM outbreak
+		WHERE userID=#{userID} AND outbreakDate BETWEEN DATE_ADD(now(), INTERVAL-6 MONTH) AND NOW()
+	</select>
+	
+	<select id="medicineCount" parameterType="String" resultType="OutbreakReportVO">
+		SELECT medicine, count(*) AS medicineCount
+		FROM medication
+		WHERE userID=#{userID} AND medicineDate BETWEEN DATE_ADD(now(), INTERVAL-6 MONTH) AND NOW()
+		GROUP BY medicine
+		ORDER BY medicineCount DESC LIMIT 1;
+	</select>
 </mapper>
