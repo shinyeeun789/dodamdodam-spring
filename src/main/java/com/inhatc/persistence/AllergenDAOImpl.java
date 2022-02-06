@@ -2,12 +2,14 @@ package com.inhatc.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.inhatc.domain.AnalyzeAllergenVO;
 import com.inhatc.domain.FoodVO;
 
 @Repository
@@ -30,6 +32,21 @@ public class AllergenDAOImpl implements AllergenDAO {
 		allergenMap.put("list", allergyTypes);
 		
 		return session.selectList(namespace+".eatableFood", allergenMap);
+	}
+
+	@Override
+	public List<AnalyzeAllergenVO> analyzeAllergen(String userID) throws Exception {
+		
+		return session.selectList(namespace+".analyzeAllergen", userID);
+	}
+
+	@Override
+	public int getMaxCount(String userID, String ingredient) throws Exception {
+		Map<String, String> whereMap = new HashMap<String, String>();
+		whereMap.put("userID", userID);
+		whereMap.put("ingredient", ingredient);
+		
+		return session.selectOne(namespace+".getMaxCount", whereMap);
 	}
 	
 }

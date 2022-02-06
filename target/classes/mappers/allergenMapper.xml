@@ -22,4 +22,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			ORDER BY RAND() LIMIT 10
 	</select>
 	
+	<select id="analyzeAllergen" parameterType="String" resultType="AnalyzeAllergenVO">
+		<![CDATA[
+			SELECT foodName, ingredient, COUNT(*) AS foodCount
+			FROM (SELECT d.foodName AS foodName, ingredient, TIMESTAMPDIFF(MINUTE, CONCAT(dietDate,' ',dietTime), CONCAT(outbreakDate,' ',outbreakTime)) AS minutediff
+					FROM diet d JOIN outbreak o JOIN food f ON (d.userID=o.userID AND f.foodID=d.foodID)
+					WHERE risk > 0 AND ingredient <> "" AND d.userID = #{userID}
+					HAVING minutediff between 0 and 1440) findAllergen
+			GROUP BY foodName
+			ORDER BY foodCount DESC
+		]]>
+	</select>
+	
+	<select id="getMaxCount" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) AS maxCount
+		FROM diet d JOIN food f ON (d.foodID = f.foodID)
+		WHERE userID = #{userID} AND ingredient LIKE CONCAT('%',#{ingredient},'%');
+	</select>
+	
 </mapper>

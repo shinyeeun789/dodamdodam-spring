@@ -37,37 +37,37 @@
 		        scrollY: false,
 		        columns: [
 		        	{
-		            	header: 'Date',
+		            	header: '날짜',
 		            	name: 'outbreakDate',
 		            	sortingType: 'desc',
 			            sortable: true
 		          	},
 		          	{
-		            	header: 'outbreakTime',
+		            	header: '증상 발생 시간',
 		            	name: 'outbreakTime',
 		            	sortingType: 'desc',
 		            	sortable: true
 		          	},
 		          	{
-		            	header: 'medicineTime',
+		            	header: '약 먹은 시간',
 		            	name: 'medicineTime',
 		            	sortingType: 'desc',
 			            sortable: true
 		          	},
 		          	{
-		            	header: 'type',
+		            	header: '증상 유형',
 		            	name: 'type'
 		          	},
 		          	{
-		            	header: 'bodyPart',
+		            	header: '증상 발생 위치',
 		            	name: 'bodyPart'
 		          	},
 		          	{
-		            	header: 'medicine',
+		            	header: '복용한 약',
 		            	name: 'medicine'
 		          	},
 		          	{
-		            	header: 'medicineInfo',
+		            	header: '비고',
 		            	name: 'medicineInfo'
 		          	}
 		        ]
@@ -80,6 +80,7 @@
 					dataType : "JSON",
 					data	 : {"userID":"${userVO.userID}", "outbreakMonth":$("#outbreakMonth").val()},
 					success  : function(result) {
+						console.log(result);
 						grid.resetData(result);
 					}
 				});

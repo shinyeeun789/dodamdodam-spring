@@ -68,7 +68,7 @@
 							<li><a href="/allergen/eatableFood.do"> 섭취 제한 식품 </a>
 						</c:if>
 						<c:if test="${empty userVO.allergy_type}">
-							<li><a href="#"> 원인 분석 </a></li>
+							<li><a href="/allergen/analyzeAllergen.do"> 원인 분석 </a></li>
 						</c:if>
 						
 						<li><a href="/outbreak/outbreakReport.do"> 증상 변화 </a></li>				

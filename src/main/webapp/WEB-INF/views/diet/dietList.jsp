@@ -37,23 +37,23 @@
 		        scrollY: false,
 		        columns: [
 		        	{
-		            	header: 'brelupper',
+		            	header: '유형',
 		            	name: 'brelupper'
 		          	},
 		          	{
-		            	header: 'Date',
+		            	header: '날짜',
 		            	name: 'dietDate',
 		            	sortingType: 'desc',
 		            	sortable: true
 		          	},
 		          	{
-		            	header: 'Time',
+		            	header: '시간',
 		            	name: 'dietTime',
 		            	sortingType: 'desc',
 			            sortable: true
 		          	},
 		          	{
-		            	header: 'foodName',
+		            	header: '음식명',
 		            	name: 'foodName'
 		          	}
 		        ]

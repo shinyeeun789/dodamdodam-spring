@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.inhatc.domain.AnalyzeAllergenVO;
 import com.inhatc.domain.FoodVO;
 import com.inhatc.domain.UserVO;
 import com.inhatc.service.AllergenService;
@@ -38,6 +39,18 @@ public class AllergenController {
 	@RequestMapping(value="/eatableFood.do", method=RequestMethod.POST)
 	public @ResponseBody List<FoodVO> eatableFoodPOST(String allergy_type, Model model, HttpSession session) throws Exception {
 		return service.eatableFood(allergy_type);
+	}
+	
+	@RequestMapping(value="/analyzeAllergen.do", method=RequestMethod.GET)
+	public void analyzeAllergenGET(Model model, HttpSession session) throws Exception {
+		logger.info("analyzeAllergen GET..........");
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO");
+		
+		if (userVO != null) {
+			List<AnalyzeAllergenVO> allergenList = service.analyzeAllergen(userVO.getUserID());
+			model.addAttribute("allergenList", allergenList);
+		}
 	}
 	
 }
