@@ -208,7 +208,11 @@
 								
 								for (int i=0; i<types.length; i++) { %>
 									<div class="col-4 col-12-small">
+<<<<<<< HEAD
 										<input type="checkbox" id="<%=i%>" value="<%=types[i]%>" name="allergy_type">
+=======
+										<input type="checkbox" id="<%=i%>" value="<%=types[i]%>" name="allergyType">
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
 										<label for="<%=i%>"> <%=types[i]%> </label>
 									</div>
 							<% } %>

@@ -60,8 +60,16 @@
 							<img src="resources/picture/allergy.png" alt=""/>
 						</span>
 					</section>
+<<<<<<< HEAD
 				</c:if>
 				<c:if test="${userVO.user_type eq '회원'}">
+=======
+<<<<<<< HEAD
+				<% } else if (user_type.equals("회원")){ %>
+=======
+				<% } else { %>
+>>>>>>> 3db5309ae2011ccd0a1ad459af9ca5c1ff62d3ac
+>>>>>>> fcea751a4ecbca473c2e7ab6ee808b7c4c6a46fa
 					<section id="banner">
 						<div class="content">
 							<header>
