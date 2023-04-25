@@ -22,6 +22,14 @@
 | 로그인 기능 | 일반 로그인만 지원 | 소셜 로그인(카카오)도 지원 |
 | 식품 정보 기능 | DB에 직접 추가 | Open API 사용 |
 
+## 📋 프로젝트 개발 문서
+| 문서명 | 링크 |
+|:-----:|:----:|
+| 소프트웨어 개발 계획서 | <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/documents/01_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EA%B0%9C%EB%B0%9C%EA%B3%84%ED%9A%8D%EC%84%9C.pdf"> [이동] </a> |
+| 인터뷰 문서 | <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/documents/02_%EC%9D%B8%ED%84%B0%EB%B7%B0%EB%AC%B8%EC%84%9C.pdf"> [이동] </a> |
+| 소프트웨어 요구분석서 | <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/documents/03_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%9A%94%EA%B5%AC%EB%B6%84%EC%84%9D%EC%84%9C.pdf"> [이동] </a> |
+| 소프트웨어 상세 설계서 | <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/documents/04_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%83%81%EC%84%B8%EC%84%A4%EA%B3%84%EC%84%9C.pdf"> [이동] </a> |
+
 ## 📱 주요 기능
 ### 1. 로그인
 - Frontend 단에서 Kakao.API.request() 함수를 통해 카카오 로그인 기능 구현
