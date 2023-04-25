@@ -101,3 +101,12 @@
 
 ### 6. 식품 검색 기능
 - 
+#### 📷 View
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://user-images.githubusercontent.com/70800414/234299704-3c70bede-aab9-4874-a9a1-d09ad323b01e.png" width="500" alt=""/> <br/>
+      <sub><b> PIC1 : 식품 검색 페이지 </sub></b>
+    </td>
+  </tr>
+</table>
