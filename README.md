@@ -1,5 +1,5 @@
 # 도담도담 v2.0.0
-2020년 9월에 진행했던 프로젝트에서 <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/new/master?readme=1#%EB%B3%B4%EC%99%84%ED%95%9C-%EC%A0%90">아쉬움으로 남았던 부분</a>을 보완한 프로젝트입니다.
+2020년 9월에 진행했던 프로젝트에서 <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/README.md#-%EB%B3%B4%EC%99%84%ED%95%9C-%EC%A0%90">아쉬움으로 남았던 부분</a>을 보완한 프로젝트입니다.
 
 ## 💻 프로젝트 소개
 식품 알레르기 환자들을 위한 안전한 제품 및 섭취 제한 식품 정보를 제공해주는 웹사이트입니다.
