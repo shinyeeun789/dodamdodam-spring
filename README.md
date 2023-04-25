@@ -31,8 +31,11 @@
 | 소프트웨어 상세 설계서 | <a href="https://github.com/shinyeeun789/DodamDodam-Spring-/blob/master/documents/04_%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4%EC%83%81%EC%84%B8%EC%84%A4%EA%B3%84%EC%84%9C.pdf"> [이동] </a> |
 
 ## 📱 주요 기능
-### 1. 로그인
+### 1. 소셜 로그인
 - Frontend 단에서 Kakao.API.request() 함수를 통해 카카오 로그인 기능 구현
+- Kakao.API.request()에서 반환한 Promise의 id로 사용자 회원가입 여부 확인
+- 미회원인 경우 DB에 저장하여 회원가입
+- 회원인 경우 session을 사용하여 로그인 처리
 #### 📷 View
 <table>
   <tr>
@@ -96,7 +99,7 @@
 </table>
 
 ### 5. 증상 발생 분석 기능
-- <a href=""> 도담도담 v1.0.0과 동일</a>
+- <a href="https://github.com/shinyeeun789/DodamDodam#4-%EC%A6%9D%EC%83%81-%EB%B0%9C%EC%83%9D-%EB%B6%84%EC%84%9D-%EA%B8%B0%EB%8A%A5"> 도담도담 v1.0.0과 동일</a>
 #### 📷 View
 <table>
   <tr>
